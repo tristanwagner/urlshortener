@@ -28,7 +28,6 @@ app.use(express.static('./public'))
 
 // handle new shortened urls
 app.post('/url', async (req, res, next) => {
-  // TODO: add to db
   let { url, alias } = req.body
   console.log('body', req.body)
   // TODO: validate url & alias
@@ -36,7 +35,7 @@ app.post('/url', async (req, res, next) => {
   if (!alias) {
     alias = uid(6)
   }
-  // insert
+  // check if exists & insert
   urls.findOne({ alias })
     .then((res) => {
       if (res) {
@@ -54,7 +53,6 @@ app.post('/url', async (req, res, next) => {
 
 // handle redirect from shortened urls
 app.get('/:alias', (req, res, next) => {
-  // TODO: get url corresponding to alias from db if exists and then redirect
   const { alias } = req.params
   console.log('alias', alias)
   urls.findOne({ alias })
