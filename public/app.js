@@ -36,8 +36,8 @@ class Form extends React.Component {
   render () {
     const { response } = this.state
     return (
-      <div style={{ display: 'inline-grid' }}>
-        <form style={{ display: 'inline-grid' }} onSubmit={e => this.onSubmit(e)}>
+      <div className='formWrapper'>
+        <form className='customForm' onSubmit={e => this.onSubmit(e)}>
           <label htmlFor="alias">Alias</label>
           <input id="alias" name="alias" type="text" onChange={e => this.onChange(e)} />
           <label htmlFor="url">Url</label>
