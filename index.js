@@ -15,6 +15,7 @@ const mongodbUri = process.env.MONGODB_URI
 const db = monk(mongodbUri)
 
 const urls = db.get('urls')
+
 urls.createIndex({ alias: 1 },{ unique: true })
 
 const uid = new ShortUniqueId()
@@ -46,6 +47,7 @@ app.post('/url', async (req, res, next) => {
         alias = uid(6)
       }
 
+      console.log(alias)
       // check if exists & insert
       return urls.findOne({ alias })
         .then((res) => {
